@@ -8,8 +8,8 @@
     <activity
         android:id="@+id/main_activity"
         android:name="com.aman.findjob.ui.MainActivity"
-        android:label="Form Listing">
-    </activity>
+        android:label="Form Listing"
+        tools:layout="@layout/activity_main"></activity>
 
     <fragment
         android:id="@+id/newFormFragment"

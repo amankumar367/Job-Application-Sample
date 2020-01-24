@@ -10,9 +10,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NewFormFragement.OnFragmentInteractionListener {
 
-
-    private var isFormListEnable = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,11 +30,8 @@ class MainActivity : AppCompatActivity(), NewFormFragement.OnFragmentInteraction
 
         val addItem = menu!!.findItem(R.id.menu_add)
         val sendItem = menu.findItem(R.id.menu_send)
-        if (isFormListEnable) {
-            addItem.isVisible = true
-            sendItem.isVisible = false
-        }
-
+        addItem.isVisible = true
+        sendItem.isVisible = false
 
         return true
     }
@@ -53,7 +47,6 @@ class MainActivity : AppCompatActivity(), NewFormFragement.OnFragmentInteraction
     }
 
     private fun openNewFormScreen() {
-        isFormListEnable = false
         rv_form_list.visibility = View.GONE
         val instance = NewFormFragement.newInstance()
         supportFragmentManager.beginTransaction()
@@ -71,7 +64,6 @@ class MainActivity : AppCompatActivity(), NewFormFragement.OnFragmentInteraction
         if (count==1){
             setToolbar()
             getFormList()
-            isFormListEnable = true
             rv_form_list.visibility = View.VISIBLE
             supportFragmentManager.popBackStack()
         }else{

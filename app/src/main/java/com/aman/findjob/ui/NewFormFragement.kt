@@ -2,10 +2,14 @@ package com.aman.findjob.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.aman.findjob.R
+
 
 class NewFormFragement: Fragment() {
 
@@ -19,6 +23,10 @@ class NewFormFragement: Fragment() {
         return inflater.inflate(R.layout.fragment_new_form, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -37,6 +45,14 @@ class NewFormFragement: Fragment() {
         toolbar.setNavigationOnClickListener {
             listener?.onBackPressed()
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val addItem = menu.findItem(R.id.menu_add)
+        val sendItem = menu.findItem(R.id.menu_send)
+
+        addItem.isVisible = false
+        sendItem.isVisible = true
     }
 
     override fun onAttach(context: Context) {

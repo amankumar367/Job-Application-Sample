@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/view_bottom">
+        app:layout_constraintBottom_toTopOf="@+id/tv_attatchment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,7 +35,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_form_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +55,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_form_discription"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +76,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_budget"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +98,10 @@
                     android:id="@+id/et_currency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_usa_flag"/>
+                    android:drawableStart="@drawable/ic_usa_flag"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:longClickable="false"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +121,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_rate"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +142,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_payment_mode"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,7 +163,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_start_date"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="date"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,7 +184,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_job_terms"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,6 +193,7 @@
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_attatchment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

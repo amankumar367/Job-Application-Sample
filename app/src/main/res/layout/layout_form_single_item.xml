@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_height"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="@dimen/margin_small"
+    app:cardElevation="@dimen/margin_small"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_form_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="sans-serif"
+            android:textColor="#2c4e68"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="A small family need house helper" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/gray_20"
+            android:textSize="@dimen/text_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/tv_form_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_form_title"
+            tools:text="January 08, 2020" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="@string/dot"
+            android:textColor="@color/gray_20"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+            app:layout_constraintStart_toEndOf="@+id/tv_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_date"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/gray_20"
+            android:textSize="@dimen/text_size"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_dot"
+            app:layout_constraintStart_toEndOf="@+id/tv_dot"
+            app:layout_constraintTop_toTopOf="@+id/tv_dot"
+            app:layout_constraintVertical_bias="0.88"
+            tools:text="128 views" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date"
+            app:srcCompat="@drawable/ic_dashboard" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/gray_20"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_rate"
+            app:layout_constraintStart_toEndOf="@+id/iv_rate"
+            app:layout_constraintTop_toTopOf="@+id/iv_rate"
+            tools:text="(Rate)" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_job_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_rate"
+            app:layout_constraintEnd_toStartOf="@+id/tv_job_term"
+            app:layout_constraintTop_toTopOf="@+id/tv_rate"
+            app:srcCompat="@drawable/ic_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_job_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
+            android:textColor="@color/gray_20"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_job_term"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_job_term"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="(Job Term)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_invite"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:text="@string/invite_btn"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_inbox"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_inbox"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:text="@string/inbox_btn"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/inbox_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_invite" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

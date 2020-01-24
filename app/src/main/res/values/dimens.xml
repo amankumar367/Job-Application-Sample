@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="card_height">135dp</dimen>
+    <dimen name="attatch_buttom">85dp</dimen>
+    <dimen name="text_size">12sp</dimen>
+
+</resources>

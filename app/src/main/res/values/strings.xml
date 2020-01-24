@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Handzap App</string>
+    <string name="form_listing">Form Listing</string>
+    <string name="new_form">New Form</string>
+
+    // Single Layout Strings
+    <string name="dot">.</string>
+    <string name="invite_btn">Invite</string>
+    <string name="inbox_btn">Inbox</string>
+    <string name="attachments">Attachments</string>
+
+    // Form Screen
+    <string name="form_title">Form Title</string>
+    <string name="form_discription">Form Description</string>
+    <string name="budget">Budget</string>
+    <string name="usd">USD</string>
+    <string name="rate">Rate</string>
+    <string name="payment_mode">Payment Mode</string>
+    <string name="start_date">Start Date</string>
+    <string name="job_term">Job Term</string>
+
+
 </resources>

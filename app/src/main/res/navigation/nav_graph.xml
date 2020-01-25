@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/newFormFragment"
-        android:name="com.aman.findjob.ui.NewFormFragement"
+        android:name="com.aman.findjob.ui.newForm.NewFormFragment"
         android:label="New Form"
         tools:layout="@layout/fragment_new_form" />
 

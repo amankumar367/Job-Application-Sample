@@ -1,14 +1,17 @@
-package com.aman.findjob.room
+package com.aman.findjob.room.database
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.aman.findjob.room.dao.FormDao
+import com.aman.findjob.room.entity.Form
 
-//@Database(entities = [], version = 1, exportSchema = false)
+@Database(entities = [Form::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
+    abstract fun formDao(): FormDao
 
     companion object {
         private const val TAG = "AppDatabase"

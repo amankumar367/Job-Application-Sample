@@ -74,6 +74,9 @@ dependencies {
     def vMaterial = '1.0.0'
     implementation "com.google.android.material:material:$vMaterial"
 
+    // Gson
+    implementation "com.google.code.gson:gson:2.8.2"
+
     // Kotlin
     def nav_version = "2.2.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

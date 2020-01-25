@@ -1,17 +1,26 @@
-package com.aman.findjob.ui
+package com.aman.findjob.ui.newForm
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.aman.findjob.R
+import com.aman.findjob.extention.createFactory
+import com.aman.findjob.repo.FormRepoI
+import com.aman.findjob.room.entity.Form
+import com.aman.findjob.ui.MainActivity
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 
-class NewFormFragement: Fragment() {
+class NewFormFragment: DaggerFragment() {
+
+    @Inject
+    lateinit var repo: FormRepoI
+
+    private lateinit var viewModel: FormViewModel
 
     private var listener: OnFragmentInteractionListener? = null
 
@@ -35,15 +44,36 @@ class NewFormFragement: Fragment() {
     }
 
     private fun init() {
+        Log.d(TAG, " >>> Initializing viewModel")
+
+        val factory = FormViewModel(repo).createFactory()
+        viewModel = ViewModelProvider(this, factory).get(FormViewModel::class.java)
+    }
+
+    private fun addNewForm() {
+        Log.d(TAG, " >>> Receive call for new Form ")
+        viewModel.addForm(Form(title ="Aman", description = "This is dumm", budget = 800, currency = "vsjk",
+            rate = "vsvjd", paymentMode = "vsdv", startDate = 241969146L, jobTerm = "dvbskjd"))
 
     }
 
     private fun setToolbar(){
         val toolbar = (activity as MainActivity).findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = CLASS_SIMPLE_NAME
+        toolbar.title =
+            CLASS_SIMPLE_NAME
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener {
             listener?.onBackPressed()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_send -> {
+                addNewForm()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -69,9 +99,9 @@ class NewFormFragement: Fragment() {
     }
 
     companion object {
-        const val CLASS_SIMPLE_NAME = "New Form"
         private const val TAG = "NewFormFragement"
+        const val CLASS_SIMPLE_NAME = "New Form"
 
-        fun newInstance(): NewFormFragement = NewFormFragement()
+        fun newInstance(): NewFormFragment = NewFormFragment()
     }
 }

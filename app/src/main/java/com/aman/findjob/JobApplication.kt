@@ -1,22 +1,26 @@
 package com.aman.findjob
 
-import android.app.Application
 import android.util.Log
 import com.aman.findjob.di.AppComponent
 import com.aman.findjob.di.DaggerAppComponent
 import com.facebook.stetho.Stetho
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class JobApplication: Application() {
+class JobApplication: DaggerApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
 
-        if(BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
+        Log.d(TAG, " >>> JobApplication Created")
+
+        if (BuildConfig.DEBUG) {
             Log.d(TAG, " >>> Initializing Stetho")
+            Stetho.initializeWithDefaults(this)
         }
 
         appComponent = DaggerAppComponent.builder().application(this).build()
+
+        return appComponent
     }
 
     companion object {

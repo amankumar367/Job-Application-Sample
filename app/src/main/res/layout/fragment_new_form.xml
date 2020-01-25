@@ -28,6 +28,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/form_title"
+                app:counterEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -48,6 +49,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/form_discription"
+                app:counterEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_form_title">
@@ -86,22 +88,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/usd"
+                app:layout_constraintBottom_toBottomOf="@+id/til_budget"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/til_budget"
-                app:layout_constraintTop_toBottomOf="@+id/til_form_discription">
+                app:layout_constraintTop_toTopOf="@+id/til_budget">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_currency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:drawableStart="@drawable/ic_usa_flag"
                     android:focusable="false"
-                    android:clickable="false"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,19 +133,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/payment_mode"
+                app:layout_constraintBottom_toBottomOf="@+id/til_rate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/til_rate"
-                app:layout_constraintTop_toBottomOf="@+id/til_currency">
+                app:layout_constraintTop_toTopOf="@+id/til_rate">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_payment_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,6 +166,9 @@
                     android:id="@+id/et_start_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:inputType="date"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -173,19 +178,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/job_term"
+                app:layout_constraintBottom_toBottomOf="@+id/til_start_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/til_start_date"
-                app:layout_constraintTop_toBottomOf="@+id/til_payment_mode">
+                app:layout_constraintTop_toTopOf="@+id/til_start_date">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_job_terms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

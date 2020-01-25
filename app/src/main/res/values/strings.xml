@@ -22,4 +22,8 @@
     <string name="send">Send</string>
 
 
+    // TextInputLayout Strings
+    <string name="required">Required</string>
+
+
 </resources>

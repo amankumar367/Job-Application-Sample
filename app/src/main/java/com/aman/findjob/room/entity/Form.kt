@@ -21,7 +21,7 @@ data class Form(
 
     @ColumnInfo(name = "budget")
     @SerializedName("budget")
-    var budget: Int,
+    var budget: Long,
 
     @ColumnInfo(name = "currency")
     @SerializedName("currency")
@@ -49,7 +49,7 @@ data class Form(
     var id: Int = 0
 
     constructor():this(
-        title ="", description = "", budget = 0, currency = "",
+        title ="", description = "", budget = 0L, currency = "",
         rate = "", paymentMode = "", startDate = 0L, jobTerm = ""
     )
 

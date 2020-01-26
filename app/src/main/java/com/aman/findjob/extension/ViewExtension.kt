@@ -1,4 +1,4 @@
-package com.aman.findjob.extention
+package com.aman.findjob.extension
 
 import android.app.Activity
 import android.view.View

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/rg_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:padding="10dp"
+        android:checkedButton="@+id/rb_no_preference_rate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_no_preference_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/no_preference" />
+
+        <RadioButton
+            android:id="@+id/rb_fixed_budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/fixed_budget" />
+
+        <RadioButton
+            android:id="@+id/rb_hourly_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/hourly_rate" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/rg_payment_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:checkedButton="@+id/rb_no_preference_payment_mode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_no_preference_payment_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/no_preference" />
+
+        <RadioButton
+            android:id="@+id/rb_epayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/e_payment" />
+
+        <RadioButton
+            android:id="@+id/rb_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/cash" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/rg_job_term"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:checkedButton="@+id/rb_no_preference_job_term"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_no_preference_job_term"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/no_preference" />
+
+        <RadioButton
+            android:id="@+id/rb_recurring_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/recurring_job" />
+
+        <RadioButton
+            android:id="@+id/rb_same_day_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/same_day_job" />
+
+        <RadioButton
+            android:id="@+id/rb_multi_days_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/multi_days_job" />
+
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

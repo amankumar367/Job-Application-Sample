@@ -1,4 +1,4 @@
-package com.aman.findjob.extention
+package com.aman.findjob.extension
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

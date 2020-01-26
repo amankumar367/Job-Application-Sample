@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aman.findjob.R
-import com.aman.findjob.extention.createFactory
-import com.aman.findjob.extention.gone
-import com.aman.findjob.extention.visible
+import com.aman.findjob.extension.createFactory
+import com.aman.findjob.extension.gone
+import com.aman.findjob.extension.visible
 import com.aman.findjob.repo.FormRepoI
 import com.aman.findjob.room.entity.Form
 import com.aman.findjob.ui.adapter.FormAdapter
@@ -71,19 +70,23 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
     }
 
     private fun updateView(state: FormState) {
-        when {
-            state.loading -> showLoading()
-            state.success -> setFormsRecyclerView(state.data)
-            state.failure -> showError()
+        if (state.eventType == FormState.EventType.FETCH) {
+            when {
+                state.loading -> showLoading()
+                state.success -> setFormsRecyclerView(state.data)
+                state.failure -> showError(state.message)
+            }
         }
     }
 
     private fun showLoading() {
         progressBar.visible()
+        tv_message_response.gone()
     }
 
     private fun setFormsRecyclerView(data: List<Form>?) {
         progressBar.gone()
+        tv_message_response.gone()
         rv_form_list.layoutManager = LinearLayoutManager(this)
         rv_form_list.adapter = data?.let {
             FormAdapter(it, object : FormAdapter.OnRecyclerViewClickListener{
@@ -115,8 +118,10 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
         }
     }
 
-    private fun showError() {
-
+    private fun showError(message: String?) {
+        progressBar.gone()
+        tv_message_response.visible()
+        tv_message_response.text = message
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -143,7 +148,8 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
 
     private fun openNewFormScreen() {
         Log.d(TAG, " >>> Opening New From Screen")
-        rv_form_list.visibility = View.GONE
+        rv_form_list.gone()
+        tv_message_response.gone()
         val instance = NewFormFragment.newInstance()
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, instance, NewFormFragment.CLASS_SIMPLE_NAME)
@@ -158,7 +164,7 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
             supportFragmentManager.popBackStack()
             setToolbar()
             loadAllForms()
-            rv_form_list.visibility = View.VISIBLE
+            rv_form_list.visible()
         } else {
             super.onBackPressed()
         }

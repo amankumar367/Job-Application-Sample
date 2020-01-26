@@ -7,5 +7,8 @@ data class FormState(
     var success: Boolean = false,
     var failure: Boolean = false,
     var message: String? = null,
-    var data: List<Form>? = null
-)
+    var data: List<Form>? = null,
+    var eventType: EventType? = null
+) {
+    enum class EventType { ADD, DELETE, FETCH }
+}

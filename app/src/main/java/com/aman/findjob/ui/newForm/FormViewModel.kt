@@ -24,49 +24,58 @@ class FormViewModel(private val repo: FormRepoI): ViewModel() {
 
     fun addForm(form: Form) {
         Log.d(TAG, " >>> Receive call for add form: $form")
-        state = state.copy(loading = true, success = false, failure = false, message = "Loading . . .", data = null)
+        state = state.copy(loading = true, message = "Loading . . .", eventType = FormState.EventType.ADD)
         compositeDisposable.add(
             repo.addForm(form)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    state = state.copy(loading = false, success = true, failure = false, message = it)
+                    state = state.copy(loading = false, success = true, failure = false,
+                        message = it, eventType = FormState.EventType.ADD)
                 }, {
-                    state = state.copy(loading = false, success = false, failure = true, message = it.localizedMessage)
+                    state = state.copy(loading = false, success = false, failure = true,
+                        message = it.localizedMessage, eventType = FormState.EventType.ADD)
                 })
         )
     }
 
     fun deleteForm(form: Form) {
         Log.d(TAG, " >>> Receive call for delete form: $form")
-        state = state.copy(loading = true, success = false, failure = false, message = "Loading . . .", data = null)
+        state = state.copy(loading = true, message = "Loading . . .", eventType = FormState.EventType.DELETE)
         compositeDisposable.add(
             repo.deleteForm(form)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    state = state.copy(loading = false, success = true, failure = false, message = it)
+                    state = state.copy(loading = false, success = true, failure = false,
+                        message = it, eventType = FormState.EventType.DELETE)
                 }, {
-                    state = state.copy(loading = false, success = false, failure = true, message = it.localizedMessage)
+                    state = state.copy(loading = false, success = false, failure = true,
+                        message = it.localizedMessage, eventType = FormState.EventType.DELETE)
                 })
         )
     }
 
     fun getAllForms() {
         Log.d(TAG, " >>> Receive call for fetching all forms")
-        state = state.copy(loading = true, success = false, failure = false, message = "Loading . . .", data = null)
+        state = state.copy(loading = true, message = "Loading . . .", eventType = FormState.EventType.FETCH)
         compositeDisposable.add(
             repo.getAllForm()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
-                    result.isNotEmpty().let {
-                        state = state.copy(loading = false, success = true, failure = false, data = result)
-                    }.run {
-                        state = state.copy(loading = false, success = false, failure = true, message = "List is empty")
+
+                    state = if (result.isNotEmpty()) {
+                        state.copy(loading = false, success = true, failure = false,
+                            data = result, eventType = FormState.EventType.FETCH)
+                    } else {
+                        state.copy(loading = false, success = false, failure = true,
+                            message = "List is empty", eventType = FormState.EventType.FETCH)
                     }
+
                 }, {
-                    state = state.copy(loading = false, success = false, failure = true, message = it.localizedMessage)
+                    state = state.copy(loading = false, success = false, failure = true,
+                        message = it.localizedMessage, eventType = FormState.EventType.FETCH)
                 })
         )
     }

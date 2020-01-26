@@ -1,9 +1,7 @@
 package com.aman.findjob.ui.newForm
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -14,10 +12,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.aman.findjob.R
-import com.aman.findjob.extention.createFactory
-import com.aman.findjob.extention.currentDate
-import com.aman.findjob.extention.gone
-import com.aman.findjob.extention.visible
+import com.aman.findjob.extension.createFactory
+import com.aman.findjob.extension.currentDate
+import com.aman.findjob.extension.gone
+import com.aman.findjob.extension.visible
 import com.aman.findjob.repo.FormRepoI
 import com.aman.findjob.room.entity.Form
 import com.aman.findjob.ui.MainActivity
@@ -25,13 +23,8 @@ import com.aman.findjob.utils.DateUtils
 import com.aman.findjob.utils.OnDateSetListener
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_new_form.*
-import kotlinx.android.synthetic.main.layout_job_term.view.*
-import kotlinx.android.synthetic.main.layout_payment_mode.*
-import kotlinx.android.synthetic.main.layout_payment_mode.view.*
-import kotlinx.android.synthetic.main.layout_rate.*
-import kotlinx.android.synthetic.main.layout_rate.view.*
+import kotlinx.android.synthetic.main.layout_radio.view.*
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 
 class NewFormFragment: DaggerFragment() {
@@ -45,9 +38,7 @@ class NewFormFragment: DaggerFragment() {
 
     private var startDate: Long? = null
 
-    private lateinit var mRateDialog: AlertDialog
-    private lateinit var mPaymentModeDialog: AlertDialog
-    private lateinit var mJobTermDialog: AlertDialog
+    private lateinit var mAlertDialog: AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,11 +52,11 @@ class NewFormFragment: DaggerFragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         init()
-        initCustomDialog()
         setToolbar()
         addTextWatcher()
         onClicks()
@@ -80,73 +71,14 @@ class NewFormFragment: DaggerFragment() {
         viewModel = ViewModelProvider(this, factory).get(FormViewModel::class.java)
     }
 
-    private fun initCustomDialog() {
-        val rateDialog = LayoutInflater.from(context!!).inflate(R.layout.layout_rate, null)
-        val paymentModeDialog = LayoutInflater.from(context!!).inflate(R.layout.layout_payment_mode, null)
-        val jobTermDialog = LayoutInflater.from(context!!).inflate(R.layout.layout_job_term, null)
-
-        mRateDialog = AlertDialog.Builder(context!!)
-            .setView(rateDialog)
-            .setTitle(getString(R.string.rate))
-            .setPositiveButton(getText(R.string.select)
-            ) { _, _ ->
-                val rate: String? = when (rateDialog.rg_rate.checkedRadioButtonId) {
-                    R.id.rb_no_preference_rate -> rateDialog.rb_no_preference_rate.text.toString()
-                    R.id.rb_fixed_budget -> rateDialog.rb_fixed_budget.text.toString()
-                    R.id.rb_hourly_rate -> rateDialog.rb_hourly_rate.text.toString()
-                    else -> null
-                }
-                et_rate.text = Editable.Factory.getInstance().newEditable(rate!!)
-                til_rate.error = null
-            }
-            .setNegativeButton(getString(R.string.cancel)
-            ) { _, _ ->
-                if (mRateDialog.isShowing)
-                    mRateDialog.dismiss()
-            }.create()
-
-        mPaymentModeDialog = AlertDialog.Builder(context!!)
-            .setView(paymentModeDialog)
-            .setTitle(getString(R.string.payment_mode))
-            .setPositiveButton(getText(R.string.select)
-            ) { _, _ ->
-                val paymentMode: String? = when (paymentModeDialog.rg_payment_mode.checkedRadioButtonId) {
-                    R.id.rb_no_preference_payment_mode -> paymentModeDialog.rb_no_preference_payment_mode.text.toString()
-                    R.id.rb_epayment -> paymentModeDialog.rb_epayment.text.toString()
-                    R.id.rb_cash -> paymentModeDialog.rb_cash.text.toString()
-                    else -> null
-                }
-                et_payment_mode.text = Editable.Factory.getInstance().newEditable(paymentMode!!)
-                til_payment_mode.error = null
-            }
-            .setNegativeButton(getString(R.string.cancel)
-            ) { _, _ ->
-                if (mPaymentModeDialog.isShowing)
-                    mPaymentModeDialog.dismiss()
-            }
-            .create()
-
-        mJobTermDialog = AlertDialog.Builder(context!!)
-            .setView(jobTermDialog)
-            .setTitle(getString(R.string.job_term))
-            .setPositiveButton(getText(R.string.select)
-            ) { _, _ ->
-                val jobTerm: String? = when (jobTermDialog.rg_job_term.checkedRadioButtonId) {
-                    R.id.rb_no_preference_job_term -> jobTermDialog.rb_no_preference_job_term.text.toString()
-                    R.id.rb_recurring_job -> jobTermDialog.rb_recurring_job.text.toString()
-                    R.id.rb_same_day_job -> jobTermDialog.rb_same_day_job.text.toString()
-                    R.id.rb_multi_days_job -> jobTermDialog.rb_multi_days_job.text.toString()
-                    else -> null
-                }
-                et_job_terms.text = Editable.Factory.getInstance().newEditable(jobTerm!!)
-                til_job_terms.error = null
-            }
-            .setNegativeButton(getString(R.string.cancel)
-            ) { _, _ ->
-                if (mJobTermDialog.isShowing)
-                    mJobTermDialog.dismiss()
-            }
-            .create()
+    private fun setToolbar(){
+        val toolbar = (activity as MainActivity).findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title =
+            CLASS_SIMPLE_NAME
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
+        toolbar.setNavigationOnClickListener {
+            listener?.onBackPressed()
+        }
     }
 
     private fun addTextWatcher() {
@@ -208,15 +140,15 @@ class NewFormFragment: DaggerFragment() {
 
     private fun onClicks() {
         et_rate.setOnClickListener {
-            mRateDialog.show()
+            showCustomDialog(DialogType.RATE)
         }
 
         et_payment_mode.setOnClickListener {
-            mPaymentModeDialog.show()
+            showCustomDialog(DialogType.PAYMENT_MODE)
         }
 
         et_job_terms.setOnClickListener {
-            mJobTermDialog.show()
+            showCustomDialog(DialogType.JOB_TERM)
         }
 
         startDate = currentDate
@@ -241,11 +173,86 @@ class NewFormFragment: DaggerFragment() {
     }
 
     private fun updateView(formState: FormState) {
-        when {
-            formState.loading -> showLoading()
-            formState.success -> goToMainScreen()
-            formState.failure -> showError()
+        if (formState.eventType == FormState.EventType.ADD) {
+            when {
+                formState.loading -> showLoading()
+                formState.success -> goToMainScreen()
+                formState.failure -> showError()
+            }
         }
+    }
+
+    private fun showCustomDialog (dialogType: DialogType) {
+        val dialog = LayoutInflater.from(context!!).inflate(R.layout.layout_radio, null)
+        var dialogTitle = "Rate"
+        when (dialogType){
+            DialogType.RATE -> {
+                dialogTitle = getString(R.string.rate)
+                dialog.rg_rate.visible()
+                dialog.rg_payment_mode.gone()
+                dialog.rg_job_term.gone()
+            }
+            DialogType.PAYMENT_MODE -> {
+                dialogTitle = getString(R.string.payment_mode)
+                dialog.rg_rate.gone()
+                dialog.rg_payment_mode.visible()
+                dialog.rg_job_term.gone()
+            }
+            DialogType.JOB_TERM -> {
+                dialogTitle = getString(R.string.job_term)
+                dialog.rg_rate.gone()
+                dialog.rg_payment_mode.gone()
+                dialog.rg_job_term.visible()
+            }
+        }
+
+        mAlertDialog = AlertDialog.Builder(context!!)
+            .setView(dialog)
+            .setTitle(dialogTitle)
+            .setPositiveButton(getText(R.string.select)
+            ) { _, _ ->
+
+                when (dialogType){
+                    DialogType.RATE -> {
+                        val rate: String? = when (dialog.rg_rate.checkedRadioButtonId) {
+                            R.id.rb_no_preference_rate -> dialog.rb_no_preference_rate.text.toString()
+                            R.id.rb_fixed_budget -> dialog.rb_fixed_budget.text.toString()
+                            R.id.rb_hourly_rate -> dialog.rb_hourly_rate.text.toString()
+                            else -> null
+                        }
+                        et_rate.text = Editable.Factory.getInstance().newEditable(rate!!)
+                        til_rate.error = null
+                    }
+                    DialogType.PAYMENT_MODE -> {
+                        val paymentMode: String? = when (dialog.rg_payment_mode.checkedRadioButtonId) {
+                            R.id.rb_no_preference_payment_mode -> dialog.rb_no_preference_payment_mode.text.toString()
+                            R.id.rb_epayment -> dialog.rb_epayment.text.toString()
+                            R.id.rb_cash -> dialog.rb_cash.text.toString()
+                            else -> null
+                        }
+                        et_payment_mode.text = Editable.Factory.getInstance().newEditable(paymentMode!!)
+                        til_payment_mode.error = null
+                    }
+                    DialogType.JOB_TERM -> {
+                        val jobTerm: String? = when (dialog.rg_job_term.checkedRadioButtonId) {
+                            R.id.rb_no_preference_job_term -> dialog.rb_no_preference_job_term.text.toString()
+                            R.id.rb_recurring_job -> dialog.rb_recurring_job.text.toString()
+                            R.id.rb_same_day_job -> dialog.rb_same_day_job.text.toString()
+                            R.id.rb_multi_days_job -> dialog.rb_multi_days_job.text.toString()
+                            else -> null
+                        }
+                        et_job_terms.text = Editable.Factory.getInstance().newEditable(jobTerm!!)
+                        til_job_terms.error = null
+                    }
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel)
+            ) { _, _ ->
+                if (mAlertDialog.isShowing)
+                    mAlertDialog.dismiss()
+            }.create()
+
+        mAlertDialog.show()
     }
 
     private fun goToMainScreen() {
@@ -284,12 +291,12 @@ class NewFormFragment: DaggerFragment() {
         }
 
         val budget = til_budget.editText!!.text.toString()
-        var budgetValue: Int = 0
+        var budgetValue: Long
         if (budget.isEmpty()) {
             til_budget.error = getString(R.string.required)
             return null
         } else {
-            budgetValue = budget.toInt()
+            budgetValue = budget.toLong()
         }
 
         val currency = til_currency.hint.toString()
@@ -315,17 +322,6 @@ class NewFormFragment: DaggerFragment() {
 
         return Form(title, description, budgetValue, currency, rate, paymentMode, startDate!!, jobTerm)
 
-    }
-
-
-    private fun setToolbar(){
-        val toolbar = (activity as MainActivity).findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title =
-            CLASS_SIMPLE_NAME
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
-        toolbar.setNavigationOnClickListener {
-            listener?.onBackPressed()
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -358,6 +354,8 @@ class NewFormFragment: DaggerFragment() {
     interface OnFragmentInteractionListener {
         fun onBackPressed()
     }
+
+    enum class DialogType { RATE, PAYMENT_MODE, JOB_TERM }
 
     companion object {
         private const val TAG = "NewFormFragement"

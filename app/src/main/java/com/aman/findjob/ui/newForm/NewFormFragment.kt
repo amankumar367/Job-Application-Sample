@@ -19,6 +19,7 @@ import com.aman.findjob.extension.visible
 import com.aman.findjob.repo.FormRepoI
 import com.aman.findjob.room.entity.Form
 import com.aman.findjob.ui.MainActivity
+import com.aman.findjob.ui.textwatcher.CustomTextWatcher
 import com.aman.findjob.utils.DateUtils
 import com.aman.findjob.utils.OnDateSetListener
 import dagger.android.support.DaggerFragment
@@ -82,7 +83,7 @@ class NewFormFragment: DaggerFragment() {
     }
 
     private fun addTextWatcher() {
-        et_form_title.addTextChangedListener(object :TextWatcher{
+        et_form_title.addTextChangedListener(object :CustomTextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 if (p0!!.isNotEmpty()) {
                     til_form_title.error = null
@@ -90,17 +91,9 @@ class NewFormFragment: DaggerFragment() {
                     til_form_title.error = getString(R.string.required)
                 }
             }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
         })
 
-        et_form_discription.addTextChangedListener(object :TextWatcher{
+        et_form_discription.addTextChangedListener(object :CustomTextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 if (p0!!.isNotEmpty()) {
                     til_form_discription.error = null
@@ -108,31 +101,15 @@ class NewFormFragment: DaggerFragment() {
                     til_form_discription.error = getString(R.string.required)
                 }
             }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
         })
 
-        et_budget.addTextChangedListener(object :TextWatcher{
+        et_budget.addTextChangedListener(object :CustomTextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 if (p0!!.isNotEmpty()) {
                     til_budget.error = null
                 } else {
                     til_budget.error = getString(R.string.required)
                 }
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
         })
 

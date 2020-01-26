@@ -7,13 +7,14 @@
     tools:context=".ui.newForm.NewFormFragment">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_attatchment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tv_attatchment">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,7 +38,7 @@
                     android:id="@+id/et_form_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +59,7 @@
                     android:id="@+id/et_form_discription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +80,7 @@
                     android:id="@+id/et_budget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"/>
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +125,10 @@
                     android:id="@+id/et_rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:longClickable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,13 +143,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/til_rate"
-                app:layout_constraintTop_toTopOf="@+id/til_rate">
+                app:layout_constraintTop_toTopOf="@+id/til_rate"
+                app:layout_constraintVertical_bias="0.39">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_payment_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:longClickable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,8 +176,8 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
-                    android:longClickable="false"
-                    android:inputType="date"/>
+                    android:inputType="date"
+                    android:longClickable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,7 +198,10 @@
                     android:id="@+id/et_job_terms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:longClickable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -239,5 +250,16 @@
         app:layout_constraintStart_toStartOf="@+id/view_attatch"
         app:layout_constraintTop_toTopOf="@+id/view_attatch"
         app:srcCompat="@drawable/ic_add" />
+
+    <ProgressBar
+        android:id="@+id/pb_new_form"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

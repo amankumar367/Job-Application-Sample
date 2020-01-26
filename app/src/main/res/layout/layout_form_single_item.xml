@@ -24,6 +24,10 @@
             android:textColor="#2c4e68"
             android:textSize="16sp"
             android:textStyle="normal"
+            android:ellipsize="end"
+            android:ems="3"
+            android:lines="1"
+            app:layout_constraintEnd_toStartOf="@+id/iv_more"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="A small family need house helper" />
@@ -94,7 +98,7 @@
             android:id="@+id/tv_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:textColor="@color/gray_20"
             app:layout_constraintBottom_toBottomOf="@+id/iv_rate"
             app:layout_constraintStart_toEndOf="@+id/iv_rate"
@@ -105,7 +109,7 @@
             android:id="@+id/iv_job_term"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_rate"
             app:layout_constraintEnd_toStartOf="@+id/tv_job_term"
             app:layout_constraintTop_toTopOf="@+id/tv_rate"
@@ -115,12 +119,11 @@
             android:id="@+id/tv_job_term"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="60dp"
             android:textColor="@color/gray_20"
             app:layout_constraintBottom_toBottomOf="@+id/iv_job_term"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_job_term"
-            app:layout_constraintVertical_bias="1.0"
             tools:text="(Job Term)" />
 
         <androidx.appcompat.widget.AppCompatTextView

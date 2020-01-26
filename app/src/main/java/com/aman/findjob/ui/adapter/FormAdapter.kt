@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aman.findjob.R
 import com.aman.findjob.room.entity.Form
+import com.aman.findjob.utils.DateUtils
 import kotlinx.android.synthetic.main.layout_form_single_item.view.*
+import kotlin.random.Random
+
 
 class FormAdapter(
     private val result: List<Form>,
@@ -32,10 +35,14 @@ class FormAdapter(
     class FormViewHolder(
         private val view: View,
         private val onRecyclerViewListener: OnRecyclerViewClickListener) : RecyclerView.ViewHolder(view) {
+
+        var random = Random.nextInt(10, 5000)
+
         fun bind(result: Form) {
             view.tv_form_title.text = result.title
-            view.tv_date.text = result.startDate.toString()
+            view.tv_date.text = DateUtils.format(result.startDate, DateUtils.DATE_FORMAT)
             view.tv_rate.text = result.rate
+            view.tv_views.text = view.context.getString(R.string.views, random.toString())
             view.tv_job_term.text = result.jobTerm
             onClicks()
         }

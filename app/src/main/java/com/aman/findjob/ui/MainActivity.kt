@@ -87,6 +87,7 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
     private fun setFormsRecyclerView(data: List<Form>?) {
         progressBar.gone()
         tv_message_response.gone()
+        rv_form_list.visible()
         rv_form_list.layoutManager = LinearLayoutManager(this)
         rv_form_list.adapter = data?.let {
             FormAdapter(it, object : FormAdapter.OnRecyclerViewClickListener{
@@ -120,6 +121,7 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
 
     private fun showError(message: String?) {
         progressBar.gone()
+        rv_form_list.gone()
         tv_message_response.visible()
         tv_message_response.text = message
     }

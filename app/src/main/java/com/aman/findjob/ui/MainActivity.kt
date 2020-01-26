@@ -18,9 +18,11 @@ import com.aman.findjob.ui.adapter.FormAdapter
 import com.aman.findjob.ui.newForm.FormState
 import com.aman.findjob.ui.newForm.FormViewModel
 import com.aman.findjob.ui.newForm.NewFormFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+
 
 class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentInteractionListener {
 
@@ -57,6 +59,11 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
         viewModel.getAllForms()
     }
 
+    private fun deleteForm(form: Form) {
+        viewModel.deleteForm(form)
+        loadAllForms()
+    }
+
     private fun setObserver() {
         viewModel.stateObservable.observe(this, Observer {
             updateView(it)
@@ -80,18 +87,31 @@ class MainActivity : DaggerAppCompatActivity(), NewFormFragment.OnFragmentIntera
         rv_form_list.layoutManager = LinearLayoutManager(this)
         rv_form_list.adapter = data?.let {
             FormAdapter(it, object : FormAdapter.OnRecyclerViewClickListener{
-                override fun onMoreButtonClick() {
-
+                override fun onMoreButtonClick(form: Form) {
+                    showBottomSheetDialog(form)
                 }
 
-                override fun onInviteButtonClick() {
-
+                override fun onInviteButtonClick(form: Form) {
+                    // Use onInviteButtonClick callback when invite button clicks
                 }
 
-                override fun onInboxButtonClick() {
-
+                override fun onInboxButtonClick(form: Form) {
+                    // Use onInboxButtonClick callback when inbox button clicks
                 }
             })
+        }
+    }
+
+    private fun showBottomSheetDialog(form: Form) {
+        val view = layoutInflater.inflate(R.layout.layout_bottom_sheet, null)
+
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(view)
+        dialog.show()
+
+        view.setOnClickListener {
+            deleteForm(form)
+            dialog.dismiss()
         }
     }
 

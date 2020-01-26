@@ -22,13 +22,13 @@
     <string name="send">Send</string>
     <string name="views">%s views</string>
 
-
     // TextInputLayout Strings
     <string name="required">Required</string>
 
     // Custom Dialog String
     <string name="cancel">Cancel</string>
     <string name="select">Select</string>
+    <string name="delete_form">Delete Form</string>
 
     // Radio Button String
     <string name="no_preference">No Preference</string>
@@ -39,6 +39,5 @@
     <string name="recurring_job">Recurring Job</string>
     <string name="same_day_job">Same Day Job</string>
     <string name="multi_days_job">Multi Days Job</string>
-
 
 </resources>

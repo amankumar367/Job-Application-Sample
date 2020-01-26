@@ -44,28 +44,28 @@ class FormAdapter(
             view.tv_rate.text = result.rate
             view.tv_views.text = view.context.getString(R.string.views, random.toString())
             view.tv_job_term.text = result.jobTerm
-            onClicks()
+            onClicks(result)
         }
 
-        private fun onClicks() {
+        private fun onClicks(form: Form) {
             view.iv_more.setOnClickListener {
-                onRecyclerViewListener.onMoreButtonClick()
+                onRecyclerViewListener.onMoreButtonClick(form)
             }
 
             view.tv_invite.setOnClickListener {
-                onRecyclerViewListener.onInviteButtonClick()
+                onRecyclerViewListener.onInviteButtonClick(form)
             }
 
             view.tv_inbox.setOnClickListener {
-                onRecyclerViewListener.onInboxButtonClick()
+                onRecyclerViewListener.onInboxButtonClick(form)
             }
         }
 
     }
 
     interface OnRecyclerViewClickListener {
-        fun onMoreButtonClick()
-        fun onInviteButtonClick()
-        fun onInboxButtonClick()
+        fun onMoreButtonClick(form: Form)
+        fun onInviteButtonClick(form: Form)
+        fun onInboxButtonClick(form: Form)
     }
 }

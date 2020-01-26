@@ -90,13 +90,14 @@ class NewFormFragment: DaggerFragment() {
             .setTitle(getString(R.string.rate))
             .setPositiveButton(getText(R.string.select)
             ) { _, _ ->
-                var rate: String? = null
-                when (rateDialog.rg_rate.checkedRadioButtonId) {
-                    R.id.rb_no_preference_rate -> rate = rateDialog.rb_no_preference_rate.text.toString()
-                    R.id.rb_fixed_budget -> rate = rateDialog.rb_fixed_budget.text.toString()
-                    R.id.rb_hourly_rate -> rate = rateDialog.rb_hourly_rate.text.toString()
+                val rate: String? = when (rateDialog.rg_rate.checkedRadioButtonId) {
+                    R.id.rb_no_preference_rate -> rateDialog.rb_no_preference_rate.text.toString()
+                    R.id.rb_fixed_budget -> rateDialog.rb_fixed_budget.text.toString()
+                    R.id.rb_hourly_rate -> rateDialog.rb_hourly_rate.text.toString()
+                    else -> null
                 }
                 et_rate.text = Editable.Factory.getInstance().newEditable(rate!!)
+                til_rate.error = null
             }
             .setNegativeButton(getString(R.string.cancel)
             ) { _, _ ->
@@ -109,13 +110,14 @@ class NewFormFragment: DaggerFragment() {
             .setTitle(getString(R.string.payment_mode))
             .setPositiveButton(getText(R.string.select)
             ) { _, _ ->
-                var paymentMode: String? = null
-                when (paymentModeDialog.rg_payment_mode.checkedRadioButtonId) {
-                    R.id.rb_no_preference_payment_mode -> paymentMode = paymentModeDialog.rb_no_preference_payment_mode.text.toString()
-                    R.id.rb_epayment -> paymentMode = paymentModeDialog.rb_epayment.text.toString()
-                    R.id.rb_cash -> paymentMode = paymentModeDialog.rb_cash.text.toString()
+                val paymentMode: String? = when (paymentModeDialog.rg_payment_mode.checkedRadioButtonId) {
+                    R.id.rb_no_preference_payment_mode -> paymentModeDialog.rb_no_preference_payment_mode.text.toString()
+                    R.id.rb_epayment -> paymentModeDialog.rb_epayment.text.toString()
+                    R.id.rb_cash -> paymentModeDialog.rb_cash.text.toString()
+                    else -> null
                 }
                 et_payment_mode.text = Editable.Factory.getInstance().newEditable(paymentMode!!)
+                til_payment_mode.error = null
             }
             .setNegativeButton(getString(R.string.cancel)
             ) { _, _ ->
@@ -129,14 +131,15 @@ class NewFormFragment: DaggerFragment() {
             .setTitle(getString(R.string.job_term))
             .setPositiveButton(getText(R.string.select)
             ) { _, _ ->
-                var jobTerm: String? = null
-                when (jobTermDialog.rg_job_term.checkedRadioButtonId) {
-                    R.id.rb_no_preference_job_term -> jobTerm = jobTermDialog.rb_no_preference_job_term.text.toString()
-                    R.id.rb_recurring_job -> jobTerm = jobTermDialog.rb_recurring_job.text.toString()
-                    R.id.rb_same_day_job -> jobTerm = jobTermDialog.rb_same_day_job.text.toString()
-                    R.id.rb_multi_days_job -> jobTerm = jobTermDialog.rb_multi_days_job.text.toString()
+                val jobTerm: String? = when (jobTermDialog.rg_job_term.checkedRadioButtonId) {
+                    R.id.rb_no_preference_job_term -> jobTermDialog.rb_no_preference_job_term.text.toString()
+                    R.id.rb_recurring_job -> jobTermDialog.rb_recurring_job.text.toString()
+                    R.id.rb_same_day_job -> jobTermDialog.rb_same_day_job.text.toString()
+                    R.id.rb_multi_days_job -> jobTermDialog.rb_multi_days_job.text.toString()
+                    else -> null
                 }
                 et_job_terms.text = Editable.Factory.getInstance().newEditable(jobTerm!!)
+                til_job_terms.error = null
             }
             .setNegativeButton(getString(R.string.cancel)
             ) { _, _ ->
